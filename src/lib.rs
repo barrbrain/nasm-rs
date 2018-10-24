@@ -271,7 +271,7 @@ impl Build {
             .unwrap_or_else(|| "ar".into())
         };
         if cfg!(target_env = "msvc") {
-            run(Command::new(ar).arg("/NAME:".to_owned() + lib).args(objs));
+            run(Command::new(ar).current_dir(out_dir).arg("/NAME:".to_owned() + lib).args(objs));
         } else {
             run(Command::new(ar).arg("crus").arg(out_dir.join(lib)).args(objs));
         }
